@@ -94,7 +94,7 @@ function addYouTubeButton() {
 function shouldAddTwitchButton() {
     // check if on twitch or player is embedded
     return (location.hostname.match(/^(www\.)?twitch\.tv/)
-            || document.getElementsByClassName("twc-right-controls").length > 0)
+            || document.getElementsByClassName("player-controls__right-control-group").length > 0)
             && document.getElementsByClassName('PiPifierButton').length == 0;
 }
 
