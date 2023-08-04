@@ -53,6 +53,7 @@ var players = [
                {name: "VideoJS", shouldAddButton: shouldAddVideoJSButton, addButton: addVideoJSButton},
                {name: "Netflix", shouldAddButton: shouldAddNetflixButton, addButton: addNetflixButton},
                {name: "Wistia", shouldAddButton: shouldAddWistiaButton, addButton: addWistiaButton},
+                {name: "Twitch", shouldAddButton: shouldAddTwitchButton, addButton: addTwitchButton},
                //TODO: add other players here
                ];
 
@@ -88,6 +89,30 @@ function addYouTubeButton() {
     button.appendChild(buttonImage);
     
     document.getElementsByClassName("ytp-right-controls")[0].appendChild(button);
+}
+
+function shouldAddTwitchButton() {
+    // check if on twitch or player is embedded
+    return (location.hostname.match(/^(www\.)?twitch\.tv/)
+            || document.getElementsByClassName("twc-right-controls").length > 0)
+            && document.getElementsByClassName('PiPifierButton').length == 0;
+}
+
+function addTwitchButton() {
+    if(!shouldAddTwitchButton()) return
+    var button = document.createElement("button");
+    button.className = "twc-button PiPifierButton";
+    button.title = "PiP (by PiPifier)";
+    button.onclick = enablePiP;
+    //TODO add style
+    //button.style.backgroundImage = 'url('+ whiteSVG_Icon + ')';
+    var buttonImage = document.createElement("img");
+    buttonImage.src = whiteSVG_Icon;
+    buttonImage.width = 22;
+    buttonImage.height = 36;
+    button.appendChild(buttonImage);
+    
+    document.getElementsByClassName("player-controls__right-control-group")[0].appendChild(button);
 }
 
 
